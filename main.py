@@ -1,3 +1,7 @@
+import random
+from math import pow
+
+
 i = 1
 while 1:
     print(i)
