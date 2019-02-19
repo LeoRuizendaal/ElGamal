@@ -177,7 +177,7 @@ def decrypt(key, cipher):
 
 
 def test():
-    assert(sys.version_info >= (3,4))
+    assert(sys.version_info >= (3, 4))
     keys = gen_key(256, 32)
     priv = keys['privateKey']
     pub = keys['publicKey']
@@ -190,12 +190,25 @@ def test():
     return bericht == normaal
 
 
+assert(sys.version_info >= (3, 4))
+keys = gen_key(256, 32)
+priv = keys['privateKey']
+pub = keys['publicKey']
 i = 1
+h = []
+f = []
 while 1:
-    print(i)
-    i +=1
+    bericht = str(i)
+    versleuteld = encrypt(pub, bericht)
+    h.append(i)
+    f.append(versleuteld)
+    print(str(i) + ": " + versleuteld)
+    i += 1
     if i > 10:
         break
-print("Done!")
+print("Done... Decrypting")
+for i in range(f.__len__()):
+    decrypted = decrypt(priv, f[i])
+    print(h[i], ": ", decrypted)
 print(test())
 
